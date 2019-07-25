@@ -1,12 +1,23 @@
 {
   "name": "personal-website",
   "version": "0.0.1",
-  "description": "",
+  "description": "Personal blog of Vladimir Hooke",
   "main": "scripts/build.js",
   "scripts": {
-    "build": "node ./scripts/build"
+    "build": "node ./scripts/build",
+    "serve": "serve ./public"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "front-matter": "^3.0.2",
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.4",
+    "marked": "^0.7.0"
+  },
+  "devDependencies": {
+    "serve": "^11.1.0"
+  }
 }
