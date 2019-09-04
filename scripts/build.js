@@ -18,7 +18,7 @@ fse.copy(`${srcPath}/assets`, `${distPath}/assets`);
 // read pages
 const files = glob.sync('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` });
 
-files.forEach((file, i) => {
+files.forEach((file) => {
   const fileData = path.parse(file);
   const destPath = path.join(distPath, fileData.dir);
 
@@ -30,9 +30,7 @@ files.forEach((file, i) => {
 
   // render page
   const pageData = frontMatter(data);
-  const templateConfig = Object.assign({}, config, {
-    page: pageData.attributes,
-  });
+  const templateConfig = { ...config, page: pageData.attributes };
   let pageContent;
 
   // generate page content according to file type
@@ -54,11 +52,11 @@ files.forEach((file, i) => {
   const layoutFileName = `${srcPath}/layouts/${layout}.ejs`;
   const layoutData = fse.readFileSync(layoutFileName, 'utf-8');
   const completePage = ejs.render(
-    layoutData,
-    Object.assign({}, templateConfig, {
+    layoutData, {
+      ...templateConfig,
       body: pageContent,
       filename: layoutFileName,
-    })
+    },
   );
 
   // save the html file
